@@ -24,11 +24,16 @@ public class DecreasePointsOnGoal : MonoBehaviour, IPointBehaviour
     {
         if(GetComponent<EnemyMovement>().GoalReached)
         {
-            DecreasePoints(basePoints);
+            IncreasePoints(basePoints);
         }
     }
 
     public void DecreasePoints(int points)
+    {
+        
+    }
+
+    public void IncreasePoints(int points)
     {
         float enemySpeed = GetComponent<EnemyMovement>().Speed;
         float pointPenalty = 0;
@@ -46,11 +51,6 @@ public class DecreasePointsOnGoal : MonoBehaviour, IPointBehaviour
         }
 
         int pointsToReceive = (int)(basePoints * pointPenalty);
-        pointManager.PlayerPoints -= pointsToReceive;
-    }
-
-    public void IncreasePoints(int points)
-    {
-        
+        pointManager.ValueOfStolenGoods += pointsToReceive;
     }
 }

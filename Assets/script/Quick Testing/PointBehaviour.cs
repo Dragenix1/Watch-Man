@@ -17,11 +17,11 @@ public class PointBehaviour : MonoBehaviour, IPointBehaviour
     //Both Point methods are supposed to be called upon point relevant action
     public void IncreasePoints(int points)
     {
-        pointManager.PlayerPoints += points;
+        pointManager.ValueOfStolenGoods += points;
     }
 
     public void DecreasePoints(int points)
     {
-        pointManager.PlayerPoints -= points;
+        pointManager.ValueOfStolenGoods -= points;
     }
 }

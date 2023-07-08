@@ -14,11 +14,11 @@ public class PointSystemManager : MonoBehaviour
         set => instance = value;
     }
 
-    private int playerPoints;
-    public int PlayerPoints
+    private int valueOfStolenGoods;
+    public int ValueOfStolenGoods
     {
-        get => playerPoints;
-        set => playerPoints = value;
+        get => valueOfStolenGoods;
+        set => valueOfStolenGoods = value;
     }
 
     [SerializeField]
@@ -48,8 +48,8 @@ public class PointSystemManager : MonoBehaviour
 
     private IEnumerator UpdateScore()
     {
-        if(playerPoints < 0) playerPoints = 0;
-        scoreValue.text = $"{playerPoints}";
+        if(valueOfStolenGoods < 0) valueOfStolenGoods = 0;
+        scoreValue.text = $"{valueOfStolenGoods}€";
         yield return new WaitForSeconds(0.5f);
     }
 }

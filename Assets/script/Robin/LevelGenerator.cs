@@ -33,6 +33,10 @@ public class LevelGenerator : MonoBehaviour
     private Vector2 endPoint;
 
     private List<Vector2Int> possibleWayPoints = new();
+    private List<Vector2Int> possibleTargets;
+    private List<Vector2Int> targets = new();
+    [SerializeField] private int targetAmount = 3;
+    public GameObject target;
 
     private NavMeshSurface surface;
     private GameObject baseLevel;
@@ -71,14 +75,43 @@ public class LevelGenerator : MonoBehaviour
         spawnPoints[1] = new (size.x * 0.5f * 10, 20);
         spawnPoints[2] = new (size.x * 0.75f * 10, 20);
 
-        Instantiate(wall, new Vector3(spawnPoints[0].x, 20 ,spawnPoints[0].y), Quaternion.identity);
-        Instantiate(wall, new Vector3(spawnPoints[1].x, 20 ,spawnPoints[1].y), Quaternion.identity);
-        Instantiate(wall, new Vector3(spawnPoints[2].x, 20 ,spawnPoints[2].y), Quaternion.identity);
+        //Instantiate(wall, new Vector3(spawnPoints[0].x, 20 ,spawnPoints[0].y), Quaternion.identity);
+        //Instantiate(wall, new Vector3(spawnPoints[1].x, 20 ,spawnPoints[1].y), Quaternion.identity);
+        //Instantiate(wall, new Vector3(spawnPoints[2].x, 20 ,spawnPoints[2].y), Quaternion.identity);
 
         endPoint = new(size.y * 0.5f * 10, (size.y - 3) * 10);
-        Instantiate(wall, new Vector3(endPoint.x, 20, endPoint.y), Quaternion.identity);
+        //Instantiate(wall, new Vector3(endPoint.x, 20, endPoint.y), Quaternion.identity);
+
+        SetTargets();
 
         surface.BuildNavMesh();
+    }
+
+    private void SetTargets()
+    {
+        possibleTargets = possibleWayPoints;
+        for (int i = 6; i < size.y - 6; i++)
+        {
+            if (i % 2 == 0)
+            {
+                for (int j = 1; j < size.x - 1; j++)
+                {
+                    possibleTargets.Add(new Vector2Int(j * 10, i * 10));
+                }
+            }
+        }
+
+        for (int i = 0; i < targetAmount; i++)
+        {
+            int index = Random.Range(0, possibleTargets.Count);
+            targets.Add(possibleTargets[index]);
+            possibleTargets.RemoveAt(index);
+        }
+
+        //foreach (Vector2Int targetPos in possibleTargets)
+        //{
+        //    Instantiate(target, new Vector3(targetPos.x, 20, targetPos.y), Quaternion.identity);
+        //}
     }
 
     private void SetSize()

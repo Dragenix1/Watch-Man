@@ -255,7 +255,9 @@ MonoBehaviour:
   - {fileID: 1005578016134158643, guid: 41b73f595d42f68479943d66e0bead82, type: 3}
   - {fileID: 1005578016134158643, guid: 90afb4c3ce42bf44890e878d667e1cc9, type: 3}
   - {fileID: 1005578016134158643, guid: 15725b25d6e3ce243b95b400867eb7bd, type: 3}
-  obstacleSizes: 010000000200000004000000
+  targetAmount: 3
+  target: {fileID: 6326037175520092866, guid: 89c15008c6bb92f45a0c58b4bdaf0ba5, type: 3}
+  obstacleSizes: 010000000300000005000000
 --- !u!4 &944582687
 Transform:
   m_ObjectHideFlags: 0

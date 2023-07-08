@@ -19,7 +19,6 @@ public class CatchEnemy : MonoBehaviour, IPointBehaviour
         {
             Destroy(other.gameObject);
             int pointsToReceive = (int)(basePoints * other.GetComponent<EnemyMovement>().Speed);
-            //In Destroy der Gegner vllt noch Catchsound abspielen
             IncreasePoints(pointsToReceive);
         }
     }

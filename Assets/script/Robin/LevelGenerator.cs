@@ -1,57 +1,60 @@
+using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using Unity.AI.Navigation;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public enum Fill
-{
-    Wall,
-    NextToWall,
-    Start,
-    End,
-    Empty
-}
+//public enum Fill
+//{
+//    Wall,
+//    NextToWall,
+//    Start,
+//    End,
+//    Empty
+//}
 
-public struct Level
-{
-    public Fill fill;
-    public bool isFilled;
-}
+//public struct Level
+//{
+//    public Fill fill;
+//    public bool isFilled;
+//}
 
 public class LevelGenerator : MonoBehaviour
 {
     [SerializeField] private Vector2Int size;
+    private Vector2Int minSize = new Vector2Int(15, 15);
+    private Vector2Int maxSize = new Vector2Int(51, 51);
     [SerializeField] private GameObject plane;
     [SerializeField] private GameObject wall;
     [SerializeField] private GameObject[] obstacles;
-    private List<int> possiblePositions = new List<int>();
-    private Vector2[] spawnPoints = new Vector2[3];
+    private readonly List<int> possiblePositions = new();
+    private readonly Vector2[] spawnPoints = new Vector2[3];
     private Vector2 endPoint;
+
+    private List<Vector2Int> possibleWayPoints = new();
 
     private NavMeshSurface surface;
     private GameObject baseLevel;
     private Transform baseLevelTransform;
-    [SerializeField] int maxObstacleSize = 5;
-    [SerializeField] int midObstacleSize = 2;
-    [SerializeField] int smallObstacleSize = 1;
+    [SerializeField] int[] obstacleSizes;
 
-    private GameObject newObject;
-    private Level[,] level;
+    int lol = 1000001;
+
+    //private GameObject newObject;
+    //private Level[,] level;
 
     private void Awake()
     {
         surface = GetComponent<NavMeshSurface>();
         baseLevel = Instantiate(new GameObject("baseLevel"), Vector3.zero, Quaternion.identity);
         baseLevelTransform = baseLevel.transform;
+        Array.Sort(obstacleSizes);
     }
+
     void Start()
     {
-        if (size.x <= 5) size.x = 5;
-        if (size.x <= 5) size.x = 5;
-        if (size.x % 2 == 0) size.x++;
-        if (size.y % 2 == 0) size.y++;
-
-        level = new Level[size.x, size.y];
+        SetSize();
 
         GenerateOutline();
         GenerateStart();
@@ -64,22 +67,28 @@ public class LevelGenerator : MonoBehaviour
             }
         }
 
-        spawnPoints[0].x = size.x * 0.25f * 10;
-        spawnPoints[0].y = 20;
-        spawnPoints[1].x = size.x * 0.5f * 10;
-        spawnPoints[1].y = 20;
-        spawnPoints[2].x = size.x * 0.75f * 10;
-        spawnPoints[2].y = 20;
+        spawnPoints[0] = new (size.x * 0.25f * 10, 20);
+        spawnPoints[1] = new (size.x * 0.5f * 10, 20);
+        spawnPoints[2] = new (size.x * 0.75f * 10, 20);
 
         Instantiate(wall, new Vector3(spawnPoints[0].x, 20 ,spawnPoints[0].y), Quaternion.identity);
         Instantiate(wall, new Vector3(spawnPoints[1].x, 20 ,spawnPoints[1].y), Quaternion.identity);
         Instantiate(wall, new Vector3(spawnPoints[2].x, 20 ,spawnPoints[2].y), Quaternion.identity);
 
-        endPoint.x = size.y * 0.5f * 10;
-        endPoint.y = (size.y - 3) * 10;
+        endPoint = new(size.y * 0.5f * 10, (size.y - 3) * 10);
         Instantiate(wall, new Vector3(endPoint.x, 20, endPoint.y), Quaternion.identity);
 
         surface.BuildNavMesh();
+    }
+
+    private void SetSize()
+    {
+        if (size.x <= minSize.x) size.x = minSize.x;
+        if (size.y <= minSize.y) size.y = minSize.y;
+        if (size.x >= maxSize.x) size.x = maxSize.x;
+        if (size.y >= maxSize.y) size.y = maxSize.y;
+        if (size.x % 2 == 0) size.x++;
+        if (size.y % 2 == 0) size.y++;
     }
 
     private void GenerateStart()
@@ -92,6 +101,96 @@ public class LevelGenerator : MonoBehaviour
         GenerateOneLine(size.y - 6);
     }
 
+    private int SearchLeft(int position)
+    {
+        int obstacleSize = 1;
+        while (possiblePositions.Contains(position - obstacleSize))
+        {
+            obstacleSize++;
+        }
+        return obstacleSize;
+    }
+
+    private int SearchRight(int position, int obstacleSize)
+    {
+        int counter = 1;
+        while (possiblePositions.Contains(position + counter))
+        {
+            obstacleSize++;
+            counter++;
+        }
+
+        return obstacleSize;
+    }
+
+    private void SetBiggestObstacle(int position, int lineNumber)
+    {
+        for (int i = -1; i <= obstacleSizes[obstacleSizes.Length - 1]; i++)
+        {
+            if (i != -1 && i != obstacleSizes[obstacleSizes.Length - 1])
+            {
+                Instantiate(obstacles[Random.Range(0, obstacles.Length)], new Vector3((position + 2 - obstacleSizes[obstacleSizes.Length - 1] + i) * 10, 10, lineNumber * 10), Quaternion.Euler(0, Random.Range(0, 4) * 90f, 0));
+            }
+            else
+            {
+                if ((position + 2 - obstacleSizes[obstacleSizes.Length - 1] + i) != 0 
+                    && (position + 2 - obstacleSizes[obstacleSizes.Length - 1] + i) != size.x - 1)
+                {
+                    possibleWayPoints.Add(new Vector2Int((position + 2 - obstacleSizes[obstacleSizes.Length - 1] + i) * 10, lineNumber * 10));
+                }
+            }
+            possiblePositions.Remove(position - i);
+            //Debug.Log(position - i + 1);
+        }
+        //Debug.Log(lol++);
+    }
+
+    private void SetObstacle(int position, int obstacleSize, int lineNumber, int leftDisplacement)
+    {
+        int oldObstacleSize = obstacleSize;
+        for (int i = 0; i <= obstacleSizes.Length - 1; i++)
+        {
+            if (oldObstacleSize >= obstacleSizes[i])
+            {
+                obstacleSize = obstacleSizes[i];
+            }
+        }
+
+        for (int i = 0; i <= leftDisplacement + 1; i++)
+        {
+            if (i != leftDisplacement + 1)
+            {
+                Instantiate(obstacles[Random.Range(0, obstacles.Length)], new Vector3((position + 1 - i) * 10, 10, lineNumber * 10), Quaternion.identity);
+            }
+            else
+            {
+                if (position + 1 - i != 0 && position + 1 - i != size.x - 1)
+                {
+                    possibleWayPoints.Add(new Vector2Int((position + 1 - i) * 10, lineNumber * 10));
+                }
+            }
+            possiblePositions.Remove(position - i);
+            //Debug.Log(position - i + 1);
+        }
+        for (int i = 1; i <= obstacleSize - leftDisplacement; i++)
+        {
+            if (i != obstacleSize - leftDisplacement)
+            {
+                Instantiate(obstacles[Random.Range(0, obstacles.Length)], new Vector3((position + 1 + i) * 10, 10, lineNumber * 10), Quaternion.identity);
+            }
+            else
+            {
+                if (position + 1 + i != 0 && position + 1 + i != size.x - 1)
+                {
+                    possibleWayPoints.Add(new Vector2Int((position + 1 + i) * 10, lineNumber * 10));
+                }
+            }
+            possiblePositions.Remove(position + i);
+            //Debug.Log(position + i + 1);
+        }
+        //Debug.Log(lol++);
+    }
+
     private void GenerateOneLine(int lineNumber)
     {
         for (int i = 0; i < size.x - 2; i++)
@@ -99,124 +198,46 @@ public class LevelGenerator : MonoBehaviour
             possiblePositions.Add(i);
         }
 
-        int leftDisplacement;
-
         while (possiblePositions.Count != 0)
         {
             int position = possiblePositions[Random.Range(0, possiblePositions.Count)];
-            int counter = 1;
-            int obstacleSize = 1;
+            int obstacleSize = SearchLeft(position);
 
-            while (possiblePositions.Contains(position - counter))
+            if (obstacleSize >= obstacleSizes[obstacleSizes.Length - 1])
             {
-                obstacleSize++;
-                counter++;
-
+                SetBiggestObstacle(position, lineNumber);
             }
-
-            if (obstacleSize >= maxObstacleSize)
-            {
-                for (int i = -1; i <= maxObstacleSize; i++)
-                {
-                    if (i != -1 && i != maxObstacleSize)
-                    {
-                        Instantiate(obstacles[Random.Range(0, obstacles.Length)], new Vector3((position + 2 - maxObstacleSize + i) * 10, 10, lineNumber * 10), Quaternion.Euler(0, Random.Range(0, 4) * 90f, 0));
-                    }
-                    possiblePositions.Remove(position - i);
-                }
-            }
-
             else
             {
-                leftDisplacement = obstacleSize - 1;
-
-                counter = 1;
-                while (possiblePositions.Contains(position + counter))
-                {
-                    obstacleSize++;
-                    counter++;
-
-                }
-
-                if (obstacleSize >= maxObstacleSize)
-                {
-                    obstacleSize = maxObstacleSize;
-
-                }
-                else if (obstacleSize >= midObstacleSize)
-                {
-                    obstacleSize = midObstacleSize;
-                }
-                else
-                {
-                    obstacleSize = smallObstacleSize;
-                }
-
-                for (int i = 0; i <= leftDisplacement + 1; i++)
-                {
-                    if (i != leftDisplacement + 1)
-                    {
-                        Instantiate(obstacles[Random.Range(0, obstacles.Length)], new Vector3((position + 1 - i) * 10, 10, lineNumber * 10), Quaternion.identity);
-                    }
-                    possiblePositions.Remove(position - i);
-                }
-                for (int i = 1; i <= obstacleSize - leftDisplacement; i++)
-                {
-                    if(i != obstacleSize - leftDisplacement)
-                    {
-                        Instantiate(obstacles[Random.Range(0, obstacles.Length)], new Vector3((position + 1 + i) * 10, 10, lineNumber * 10), Quaternion.identity);
-                    }
-                    possiblePositions.Remove(position + i);
-                }
+                int leftDisplacement = obstacleSize - 1;
+                obstacleSize = SearchRight(position, obstacleSize);
+                SetObstacle(position, obstacleSize, lineNumber, leftDisplacement);
             }
         }
+
+        //Debug.Log("EndLine" + lineNumber);
     }
 
     private void GenerateOutline()
     {
-        //for (int i = 0; i < size.x; i++)
-        //{
-        //    for (int j = 0; j < size.y; j++)
-        //    {
-        //        level[i, j].isFilled = false;
-        //        level[i, j].fill = Fill.Empty;
-        //    }
-        //}
         for (int i = 0; i < size.x; i++)
         {
             for (int j = 0; j < size.y; j++)
             {
-                newObject = Instantiate(plane, new Vector3(i * 10, 0, j * 10), Quaternion.identity, baseLevelTransform);
+                Instantiate(plane, new Vector3(i * 10, 0, j * 10), Quaternion.identity, baseLevelTransform);
             }
         }
 
         for (int i = 0; i <= size.x - 1; i++)
         {
             Instantiate(wall, new Vector3(i * 10, 25, 0), Quaternion.identity, baseLevelTransform);
-            //level[i, 0].isFilled = true;
-            //level[i, 0].fill = Fill.Wall;
-            //level[i, 1].isFilled = true;
-            //level[i, 1].fill = Fill.Start;
-            //level[i, 2].isFilled = true;
-            //level[i, 2].fill = Fill.Start;
             Instantiate(wall, new Vector3(i * 10, 25, (size.y - 1) * 10), Quaternion.identity, baseLevelTransform);
-            //level[i, size.y - 1].isFilled = true;
-            //level[i, size.y - 1].fill = Fill.Wall;
-            //level[i, size.y - 2].isFilled = true;
-            //level[i, size.y - 2].fill = Fill.End;
-            //level[i, size.y - 3].isFilled = true;
-            //level[i, size.y - 3].fill = Fill.End;
         }
 
         for (int i = 1; i < size.y - 1; i++)
         {
             Instantiate(wall, new Vector3(0, 25, i * 10), Quaternion.identity, baseLevelTransform);
-            //level[0, size.y - 1].isFilled = true;
-            //level[0, size.y - 1].fill = Fill.Wall;
             Instantiate(wall, new Vector3((size.x - 1) * 10, 25, i * 10), Quaternion.identity, baseLevelTransform);
-            //level[size.x - 1, size.y - 1].isFilled = true;
-            //level[size.x - 1, size.y - 1].fill = Fill.Wall;
         }
     }
-
 }

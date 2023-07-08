@@ -247,7 +247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 160d1a191321dd04b90808e1985b517e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: {x: 30, y: 30}
+  size: {x: 17, y: 17}
   plane: {fileID: 6652721199637250195, guid: 3bbe3c457df9a6b4abbf1bec18b2cd3c, type: 3}
   wall: {fileID: 5215173045428520367, guid: 623cf7d23e6c8e549875cc43f250639a, type: 3}
   obstacles:
@@ -255,9 +255,7 @@ MonoBehaviour:
   - {fileID: 1005578016134158643, guid: 41b73f595d42f68479943d66e0bead82, type: 3}
   - {fileID: 1005578016134158643, guid: 90afb4c3ce42bf44890e878d667e1cc9, type: 3}
   - {fileID: 1005578016134158643, guid: 15725b25d6e3ce243b95b400867eb7bd, type: 3}
-  maxObstacleSize: 7
-  midObstacleSize: 3
-  smallObstacleSize: 1
+  obstacleSizes: 010000000200000004000000
 --- !u!4 &944582687
 Transform:
   m_ObjectHideFlags: 0

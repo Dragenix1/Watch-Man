@@ -25,6 +25,7 @@ public class Playercontrol : MonoBehaviour
 
     private bool isMoving = false;
     private bool isRotating = false;
+    public bool isCatching = false;
 
     private Vector3 moveDirection = Vector3.zero;
     private CharacterController characterController;
@@ -49,54 +50,50 @@ public class Playercontrol : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (characterController != null && !gamePaused)
+        if (characterController != null && !gamePaused && !isCatching)
         {
             //--------------
             //MOVING
             //--------------
-            if (!isRotating)
+            moveDirection = transform.forward * Input.GetAxis("Vertical");
+            moveDirection = moveDirection * moveSpeed;
+
+            characterController.SimpleMove(moveDirection);
+            if (moveDirection.sqrMagnitude > moveLockOffset)
             {
-                moveDirection = transform.forward * Input.GetAxis("Vertical");
-                moveDirection = moveDirection * moveSpeed;
 
-                characterController.SimpleMove(moveDirection);
-                if (moveDirection.sqrMagnitude > moveLockOffset)
-                {
-
-                    isMoving = true;
-                    anim.SetBool(walkBool, true);
-                }
-                else
-                {
-                    isMoving = false;
-                    anim.SetBool(walkBool, false);
-                }
+                isMoving = true;
+                anim.SetBool(walkBool, true);
             }
+            else
+            {
+                isMoving = false;
+                anim.SetBool(walkBool, false);
+            }
+
 
 
 
             //------------------
             //ROTATING
             //------------------
-            if (!isMoving)
+            if (Input.GetKey(KeyCode.A))
             {
-                if (Input.GetKey(KeyCode.A))
-                {
-                    destRotation.eulerAngles = destRotation.eulerAngles - new Vector3(0, rotationAmount, 0);
-                    isRotating = true;
-                }
-                if (Input.GetKey(KeyCode.D))
-                {
-                    destRotation.eulerAngles = destRotation.eulerAngles + new Vector3(0, rotationAmount, 0);
-                    isRotating = true;
-                }
-                transform.rotation = new Quaternion(destRotation.x, destRotation.y, destRotation.z, destRotation.w);
-
-                if (Input.GetKeyUp(KeyCode.A))
-                    isRotating = false;
-                if (Input.GetKeyUp(KeyCode.D))
-                    isRotating = false;
+                destRotation.eulerAngles = destRotation.eulerAngles - new Vector3(0, rotationAmount, 0);
+                isRotating = true;
             }
+            if (Input.GetKey(KeyCode.D))
+            {
+                destRotation.eulerAngles = destRotation.eulerAngles + new Vector3(0, rotationAmount, 0);
+                isRotating = true;
+            }
+            transform.rotation = new Quaternion(destRotation.x, destRotation.y, destRotation.z, destRotation.w);
+
+            if (Input.GetKeyUp(KeyCode.A))
+                isRotating = false;
+            if (Input.GetKeyUp(KeyCode.D))
+                isRotating = false;
+
 
             //---------------------
             //SPRINTING

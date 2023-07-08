@@ -374,6 +374,7 @@ MonoBehaviour:
   rotationAmount: 1
   moveLockOffset: 5
   gamePaused: 0
+  isCatching: 0
 --- !u!82 &4075482908887733510
 AudioSource:
   m_ObjectHideFlags: 0
@@ -725,7 +726,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f5870779f4b667444967347b3cb0c0eb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 90
+      value: 127.455
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f5870779f4b667444967347b3cb0c0eb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y

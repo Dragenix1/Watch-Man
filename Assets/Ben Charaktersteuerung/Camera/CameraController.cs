@@ -27,7 +27,8 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         cameraRotation = transform.rotation;
-        activeCameraLane = 5;
+        activeCameraLane = 0;
+        transform.position = cameraLanes[activeCameraLane].position;
     }
 
     // Update is called once per frame

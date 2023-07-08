@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Debug
   - Enemy
+  - VFX
   layers:
   - Default
   - TransparentFX

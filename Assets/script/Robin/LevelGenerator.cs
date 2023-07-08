@@ -23,11 +23,10 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private Vector2Int size;
     [SerializeField] private GameObject plane;
     [SerializeField] private GameObject wall;
-    [SerializeField] private GameObject[] smallObstacle;
-    private GameObject newObject;
-    private Vector2Int startPoint;
-    private Level[,] level;
+    [SerializeField] private GameObject[] obstacles;
     private List<int> possiblePositions = new List<int>();
+    private Vector2[] spawnPoints = new Vector2[3];
+    private Vector2 endPoint;
 
     private NavMeshSurface surface;
     private GameObject baseLevel;
@@ -35,6 +34,9 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] int maxObstacleSize = 5;
     [SerializeField] int midObstacleSize = 2;
     [SerializeField] int smallObstacleSize = 1;
+
+    private GameObject newObject;
+    private Level[,] level;
 
     private void Awake()
     {
@@ -54,7 +56,7 @@ public class LevelGenerator : MonoBehaviour
         GenerateOutline();
         GenerateStart();
         GenerateEnd();
-        for (int i = 4; i < size.y - 4; i++)
+        for (int i = 6; i < size.y - 6; i++)
         {
             if (i % 2 != 0)
             {
@@ -62,17 +64,32 @@ public class LevelGenerator : MonoBehaviour
             }
         }
 
+        spawnPoints[0].x = size.x * 0.25f * 10;
+        spawnPoints[0].y = 20;
+        spawnPoints[1].x = size.x * 0.5f * 10;
+        spawnPoints[1].y = 20;
+        spawnPoints[2].x = size.x * 0.75f * 10;
+        spawnPoints[2].y = 20;
+
+        Instantiate(wall, new Vector3(spawnPoints[0].x, 20 ,spawnPoints[0].y), Quaternion.identity);
+        Instantiate(wall, new Vector3(spawnPoints[1].x, 20 ,spawnPoints[1].y), Quaternion.identity);
+        Instantiate(wall, new Vector3(spawnPoints[2].x, 20 ,spawnPoints[2].y), Quaternion.identity);
+
+        endPoint.x = size.y * 0.5f * 10;
+        endPoint.y = (size.y - 3) * 10;
+        Instantiate(wall, new Vector3(endPoint.x, 20, endPoint.y), Quaternion.identity);
+
         surface.BuildNavMesh();
     }
 
     private void GenerateStart()
     {
-        GenerateOneLine(3);
+        GenerateOneLine(5);
     }
     
     private void GenerateEnd()
     {
-        GenerateOneLine(size.y - 4);
+        GenerateOneLine(size.y - 6);
     }
 
     private void GenerateOneLine(int lineNumber)
@@ -86,7 +103,7 @@ public class LevelGenerator : MonoBehaviour
 
         while (possiblePositions.Count != 0)
         {
-            int position = possiblePositions[UnityEngine.Random.Range(0, possiblePositions.Count)];
+            int position = possiblePositions[Random.Range(0, possiblePositions.Count)];
             int counter = 1;
             int obstacleSize = 1;
 
@@ -103,7 +120,7 @@ public class LevelGenerator : MonoBehaviour
                 {
                     if (i != -1 && i != maxObstacleSize)
                     {
-                        Instantiate(smallObstacle[Random.Range(0, smallObstacle.Length)], new Vector3((position + 2 - maxObstacleSize + i) * 10, 10, lineNumber * 10), Quaternion.Euler(0, Random.Range(0, 4) * 90f, 0));
+                        Instantiate(obstacles[Random.Range(0, obstacles.Length)], new Vector3((position + 2 - maxObstacleSize + i) * 10, 10, lineNumber * 10), Quaternion.Euler(0, Random.Range(0, 4) * 90f, 0));
                     }
                     possiblePositions.Remove(position - i);
                 }
@@ -139,7 +156,7 @@ public class LevelGenerator : MonoBehaviour
                 {
                     if (i != leftDisplacement + 1)
                     {
-                        Instantiate(smallObstacle[Random.Range(0, smallObstacle.Length)], new Vector3((position + 1 - i) * 10, 10, lineNumber * 10), Quaternion.identity);
+                        Instantiate(obstacles[Random.Range(0, obstacles.Length)], new Vector3((position + 1 - i) * 10, 10, lineNumber * 10), Quaternion.identity);
                     }
                     possiblePositions.Remove(position - i);
                 }
@@ -147,7 +164,7 @@ public class LevelGenerator : MonoBehaviour
                 {
                     if(i != obstacleSize - leftDisplacement)
                     {
-                        Instantiate(smallObstacle[Random.Range(0, smallObstacle.Length)], new Vector3((position + 1 + i) * 10, 10, lineNumber * 10), Quaternion.identity);
+                        Instantiate(obstacles[Random.Range(0, obstacles.Length)], new Vector3((position + 1 + i) * 10, 10, lineNumber * 10), Quaternion.identity);
                     }
                     possiblePositions.Remove(position + i);
                 }

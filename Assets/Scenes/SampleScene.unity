@@ -250,7 +250,7 @@ MonoBehaviour:
   size: {x: 30, y: 30}
   plane: {fileID: 6652721199637250195, guid: 3bbe3c457df9a6b4abbf1bec18b2cd3c, type: 3}
   wall: {fileID: 5215173045428520367, guid: 623cf7d23e6c8e549875cc43f250639a, type: 3}
-  smallObstacle:
+  obstacles:
   - {fileID: 1005578016134158643, guid: 0726f4412def0bb49acd472c4c593fd0, type: 3}
   - {fileID: 1005578016134158643, guid: 41b73f595d42f68479943d66e0bead82, type: 3}
   - {fileID: 1005578016134158643, guid: 90afb4c3ce42bf44890e878d667e1cc9, type: 3}

@@ -22,7 +22,7 @@ public class Footsteps : MonoBehaviour
         {
             if (delay >= stepLength)
             {
-                float audioVolume = Random.Range(volume - 0.1f, volume + 0.11f);
+                float audioVolume = Random.Range(volume - 0.002f, volume + 0.002f);
                 AudioSource.PlayClipAtPoint(audioClip, transform.position, audioVolume);
                 delay = 0;
             }

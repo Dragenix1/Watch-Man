@@ -20,6 +20,8 @@ public class CatchEnemy : MonoBehaviour, IPointBehaviour
 
     private bool coroutineRunning = false;
 
+    public AudioClip[] catchSounds;
+
     private void Start()
     {
         pointManager = PointSystemManager.Instance;
@@ -39,6 +41,9 @@ public class CatchEnemy : MonoBehaviour, IPointBehaviour
         {
 
             anim.SetTrigger(catchID);
+
+            AudioClip clip = catchSounds[Random.Range(0, catchSounds.Length)];
+            AudioSource.PlayClipAtPoint(clip, transform.parent.transform.position);
 
             other.gameObject.GetComponent<NavMeshAgent>().isStopped = true;
             other.gameObject.transform.LookAt(transform.parent.position);

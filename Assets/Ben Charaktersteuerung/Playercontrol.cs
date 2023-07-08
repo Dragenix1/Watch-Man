@@ -15,7 +15,7 @@ public class Playercontrol : MonoBehaviour
     public float sprintCooldownDuration = 2.0f;
 
     public float rotationSpeed = 100.0f;
-    [Tooltip("In Degree")]public float rotationAmount = 15.0f;
+    [Tooltip("In Degree")] public float rotationAmount = 15.0f;
     public float moveLockOffset = 0.2f;
 
     public bool gamePaused = false;
@@ -31,6 +31,9 @@ public class Playercontrol : MonoBehaviour
     private Quaternion destRotation;
     private Coroutine sprintingCoroutine;
 
+    private Animator anim;
+    private int walkBool;
+
 
     // Start is called before the first frame update
     void Start()
@@ -38,12 +41,15 @@ public class Playercontrol : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         destRotation = transform.rotation;
         moveSpeed = walkSpeed;
+
+        anim = GetComponent<Animator>();
+        walkBool = Animator.StringToHash("isWalking");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (characterController != null && !gamePaused) 
+        if (characterController != null && !gamePaused)
         {
             //--------------
             //MOVING
@@ -55,9 +61,16 @@ public class Playercontrol : MonoBehaviour
 
                 characterController.SimpleMove(moveDirection);
                 if (moveDirection.sqrMagnitude > moveLockOffset)
+                {
+
                     isMoving = true;
-                else 
+                    anim.SetBool(walkBool, true);
+                }
+                else
+                {
                     isMoving = false;
+                    anim.SetBool(walkBool, false);
+                }
             }
 
 
@@ -96,7 +109,7 @@ public class Playercontrol : MonoBehaviour
             {
                 sprintingCoroutine = StartCoroutine(Sprinting());
             }
-            
+
             if (Input.GetKeyUp(KeyCode.LeftShift))
             {
                 StopCoroutine(sprintingCoroutine);

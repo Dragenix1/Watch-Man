@@ -8,6 +8,8 @@ public class MainMenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject optionsMenu;
     [SerializeField] private AudioSource lightTurnOff;
+    [SerializeField] private GameObject howToPlayMenu;
+    [SerializeField] private GameObject mainMenu;
     [SerializeField] private Light light1;
     [SerializeField] private Light light2;
     [SerializeField] private Light light3;
@@ -24,6 +26,7 @@ public class MainMenuManager : MonoBehaviour
     private void Start()
     {
         optionsMenu.SetActive(false);
+        howToPlayMenu.SetActive(false);
     }
 
     private void Update()
@@ -31,13 +34,19 @@ public class MainMenuManager : MonoBehaviour
         if (optionsMenu.activeInHierarchy && Input.GetKeyDown(KeyCode.Escape))
         {
             optionsMenu.SetActive(false);
+            mainMenu.SetActive(true);
+        }
+
+        if (howToPlayMenu.activeInHierarchy && Input.GetKeyDown(KeyCode.Escape))
+        {
+            howToPlayMenu.SetActive(false);
+            mainMenu.SetActive(true);
         }
     }
 
     public void OnPlayClick()
     {
         StartCoroutine(StartGame());
-        //InvokeRepeating("StartStartingCoroutine", 0, 1f);
     }
     public void StartStartingCorourine()
     {
@@ -48,11 +57,27 @@ public class MainMenuManager : MonoBehaviour
     {
         if (optionsMenu.activeInHierarchy)
         {
+            mainMenu.SetActive(true);
             optionsMenu.SetActive(false);
         }
         else
         {
             optionsMenu.SetActive(true);
+            mainMenu.SetActive(false);
+        }
+    }
+
+    public void OnHowToPlayClick()
+    {
+        if(howToPlayMenu.activeInHierarchy)
+        {
+            howToPlayMenu.SetActive(false);
+            mainMenu.SetActive(true);
+        }
+        else
+        {
+            howToPlayMenu.SetActive(true);
+            mainMenu.SetActive(false);
         }
     }
 

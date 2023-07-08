@@ -1,7 +1,6 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public enum Fill
 {
@@ -17,23 +16,22 @@ public struct Level
     public Fill fill;
     public bool isFilled;
 }
+
 public class LevelGenerator : MonoBehaviour
 {
     [SerializeField] private Vector2Int size;
     [SerializeField] private GameObject plane;
     [SerializeField] private GameObject wall;
-    [SerializeField] private GameObject bigObstacle;
-    [SerializeField] private GameObject midObstacle;
-    [SerializeField] private GameObject smallObstacle;
+    [SerializeField] private GameObject[] smallObstacle;
     private GameObject newObject;
     private Vector2Int startPoint;
     private Level[,] level;
     private List<int> possiblePositions = new List<int>();
 
-    [SerializeField] int maxObstacleSize = 3;
+    [SerializeField] int maxObstacleSize = 5;
     [SerializeField] int midObstacleSize = 2;
+    [SerializeField] int smallObstacleSize = 1;
 
-    // Start is called before the first frame update
     void Start()
     {
         if (size.x <= 5) size.x = 5;
@@ -46,15 +44,32 @@ public class LevelGenerator : MonoBehaviour
         GenerateOutline();
         GenerateStart();
         GenerateEnd();
+        for (int i = 4; i < size.y - 4; i++)
+        {
+            if (i % 2 != 0)
+            {
+                GenerateOneLine(i);
+            }
+        }
     }
 
     private void GenerateStart()
+    {
+        GenerateOneLine(3);
+    }
+    
+    private void GenerateEnd()
+    {
+        GenerateOneLine(size.y - 4);
+    }
+
+    private void GenerateOneLine(int lineNumber)
     {
         for (int i = 0; i < size.x - 2; i++)
         {
             possiblePositions.Add(i);
         }
-        
+
         int leftDisplacement;
 
         while (possiblePositions.Count != 0)
@@ -67,25 +82,21 @@ public class LevelGenerator : MonoBehaviour
             {
                 obstacleSize++;
                 counter++;
+
             }
 
-            //if (obstacleSize >= maxObstacleSize)
-            //{
-            //    Instantiate(bigObstacle, new Vector3(position + 1 - maxObstacleSize, 0.5f, 3), Quaternion.identity);
-            //    for (int i = -1; i <= maxObstacleSize; i++)
-            //    {
-            //        possiblePositions.Remove(position - i);
-            //    }
-            //}
-
-            if (obstacleSize >= midObstacleSize)
+            if (obstacleSize >= maxObstacleSize)
             {
-                Instantiate(midObstacle, new Vector3(position + 1 - midObstacleSize, 0.5f, 3), Quaternion.identity);
-                for (int i = -1; i <= midObstacleSize; i++)
+                for (int i = -1; i <= maxObstacleSize; i++)
                 {
+                    if (i != -1 && i != maxObstacleSize)
+                    {
+                        Instantiate(smallObstacle[Random.Range(0, smallObstacle.Length)], new Vector3(position + 2 - maxObstacleSize + i, 0.5f, lineNumber), Quaternion.Euler(0, Random.Range(0, 4) * 90f, 0));
+                    }
                     possiblePositions.Remove(position - i);
                 }
             }
+
             else
             {
                 leftDisplacement = obstacleSize - 1;
@@ -95,39 +106,41 @@ public class LevelGenerator : MonoBehaviour
                 {
                     obstacleSize++;
                     counter++;
+
                 }
 
                 if (obstacleSize >= maxObstacleSize)
                 {
-                    Instantiate(bigObstacle, new Vector3(position + 1 - leftDisplacement, 0.5f, 3), Quaternion.identity);
                     obstacleSize = maxObstacleSize;
 
                 }
                 else if (obstacleSize >= midObstacleSize)
                 {
-                    Instantiate(midObstacle, new Vector3(position + 1 - leftDisplacement, 0.5f, 3), Quaternion.identity);
                     obstacleSize = midObstacleSize;
                 }
                 else
                 {
-                    Instantiate(smallObstacle, new Vector3(position + 1, 0.5f, 3), Quaternion.identity);
+                    obstacleSize = smallObstacleSize;
                 }
 
-                for (int i = -1; i < leftDisplacement; i++)
+                for (int i = 0; i <= leftDisplacement + 1; i++)
                 {
+                    if (i != leftDisplacement + 1)
+                    {
+                        Instantiate(smallObstacle[Random.Range(0, smallObstacle.Length)], new Vector3(position + 1 - i, 0.5f, lineNumber), Quaternion.identity);
+                    }
                     possiblePositions.Remove(position - i);
                 }
-                for (int i = -1; i <= obstacleSize - leftDisplacement; i++)
+                for (int i = 1; i <= obstacleSize - leftDisplacement; i++)
                 {
+                    if(i != obstacleSize - leftDisplacement)
+                    {
+                        Instantiate(smallObstacle[Random.Range(0, smallObstacle.Length)], new Vector3(position + 1 + i, 0.5f, lineNumber), Quaternion.identity);
+                    }
                     possiblePositions.Remove(position + i);
                 }
             }
         }
-    }
-    
-    private void GenerateEnd()
-    {
-
     }
 
     private void GenerateOutline()

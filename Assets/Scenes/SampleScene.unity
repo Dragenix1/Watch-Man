@@ -246,14 +246,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 160d1a191321dd04b90808e1985b517e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: {x: 15, y: 15}
+  size: {x: 30, y: 30}
   plane: {fileID: 6652721199637250195, guid: 3bbe3c457df9a6b4abbf1bec18b2cd3c, type: 3}
   wall: {fileID: 5215173045428520367, guid: 623cf7d23e6c8e549875cc43f250639a, type: 3}
-  bigObstacle: {fileID: 6945680228909575097, guid: 4d4ab295e33c8844589ac0c84724dce2, type: 3}
-  midObstacle: {fileID: 2087069824545642722, guid: 6b985d8c24f207c40ac3b83d6f1e4949, type: 3}
-  smallObstacle: {fileID: 6457690236109319343, guid: 64e27e286912f1c41a39775640673ae9, type: 3}
-  maxObstacleSize: 3
-  midObstacleSize: 2
+  smallObstacle:
+  - {fileID: 8319681739113463813, guid: 89c15008c6bb92f45a0c58b4bdaf0ba5, type: 3}
+  - {fileID: 5530655333904742909, guid: a72fc2eafdb11824cb2d8e068a0d1035, type: 3}
+  maxObstacleSize: 7
+  midObstacleSize: 3
+  smallObstacleSize: 1
 --- !u!4 &944582687
 Transform:
   m_ObjectHideFlags: 0

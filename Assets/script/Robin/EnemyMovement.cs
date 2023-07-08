@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,9 +8,12 @@ public class EnemyMovement : MonoBehaviour
     public float Speed { get => speed; }
     private NavMeshAgent agent;
     private Rigidbody rb;
-    [SerializeField] private Transform[] targets;
+    [SerializeField] private List<Transform> targets = new List<Transform>();
+    [SerializeField] private Transform endPoint;
     private Transform lastTarget;
     private Transform newTarget;
+    private bool goalReached = false; //Need to be true when goal reached to determine whether to decrease points or not (reached goal destroy or got caught destroy)
+    public bool GoalReached { get => goalReached; }
 
     private void Awake()
     {
@@ -19,21 +23,37 @@ public class EnemyMovement : MonoBehaviour
 
     private void Start()
     {
-        lastTarget = targets[Random.Range(0, targets.Length - 1)];
+        lastTarget = targets[Random.Range(0, targets.Count - 1)];
         agent.SetDestination(lastTarget.position);
         agent.speed = speed;
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("Player")) return;
+       if(other.gameObject.transform == endPoint)
+        {
+            goalReached = true;
+            Destroy(gameObject);
+            return;
+        }
         if (other.gameObject != lastTarget.gameObject) return;
 
-        do
+        if (targets.Count != 0)
         {
-            newTarget = targets[Random.Range(0, targets.Length - 1)];
-        } while (newTarget == lastTarget);
+            targets.Remove(lastTarget); 
+        }
+        if(targets.Count != 0)
+        {
+            newTarget = targets[Random.Range(0, targets.Count - 1)];
+        }
 
         lastTarget = newTarget;
+        if(targets.Count == 0)
+        {
+            if (lastTarget == endPoint) return;
+            lastTarget = endPoint;
+        }
         agent.SetDestination(lastTarget.position);
     }
 }

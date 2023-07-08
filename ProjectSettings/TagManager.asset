@@ -5,14 +5,15 @@ TagManager:
   serializedVersion: 2
   tags:
   - Debug
+  - VFX
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
+  - Top Planes
   - 
   - 
   - 

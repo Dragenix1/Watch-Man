@@ -78,7 +78,7 @@ public class LevelGenerator : MonoBehaviour
         GenerateOutline();
         GenerateStart();
         GenerateEnd();
-        for (int i = 6; i < size.y - 6; i++)
+        for (int i = 4; i < size.y - 4; i++)
         {
             if (i % 2 != 0)
             {
@@ -101,7 +101,7 @@ public class LevelGenerator : MonoBehaviour
 
         endPoint = new((size.y - 3) * 10, size.x * 0.5f * 10);
         EndPoint = Instantiate(target, new Vector3(endPoint.x, 1, endPoint.y), Quaternion.identity).transform;
-        Player = Instantiate(player, new Vector3(endPoint.x - 10, 1, endPoint.y), Quaternion.Euler(0, -90, 0));
+        Player = Instantiate(player, new Vector3(endPoint.x, 1, endPoint.y), Quaternion.Euler(0, -90, 0));
     }
 
     private void SetSize()
@@ -139,12 +139,12 @@ public class LevelGenerator : MonoBehaviour
 
     private void GenerateStart()
     {
-        GenerateOneLine(5);
+        GenerateOneLine(3);
     }
 
     private void GenerateEnd()
     {
-        GenerateOneLine(size.y - 6);
+        GenerateOneLine(size.y - 4);
     }
 
     private void GenerateOneLine(int lineNumber)
@@ -202,7 +202,8 @@ public class LevelGenerator : MonoBehaviour
         {
             if (i != -1 && i != obstacleSizes[obstacleSizes.Length - 1])
             {
-                Instantiate(obstacles[Random.Range(0, obstacles.Length)], new Vector3(lineNumber * 10, 10, (position + 2 - obstacleSizes[obstacleSizes.Length - 1] + i) * 10), Quaternion.Euler(0, Random.Range(0, 4) * 90f, 0), regalsTransform);
+                Instantiate(obstacles[Random.Range(0, obstacles.Length)], new Vector3(lineNumber * 10, 5, (position + 2 - obstacleSizes[obstacleSizes.Length - 1] + i) * 10 - 2.5f), Quaternion.Euler(0, Random.Range(0, 4) * 90f, 0), regalsTransform);
+                Instantiate(obstacles[Random.Range(0, obstacles.Length)], new Vector3(lineNumber * 10, 5, (position + 2 - obstacleSizes[obstacleSizes.Length - 1] + i) * 10 + 2.5f), Quaternion.Euler(0, Random.Range(0, 4) * 90f, 0), regalsTransform);
                 //Debug.Log((position + 2 - obstacleSizes[obstacleSizes.Length - 1] + i) * 10);
             }
             else
@@ -234,7 +235,8 @@ public class LevelGenerator : MonoBehaviour
         {
             if (i != leftDisplacement + 1)
             {
-                Instantiate(obstacles[Random.Range(0, obstacles.Length)], new Vector3(lineNumber * 10, 10, (position + 1 - i) * 10), Quaternion.identity, regalsTransform);
+                Instantiate(obstacles[Random.Range(0, obstacles.Length)], new Vector3(lineNumber * 10, 5, (position + 1 - i) * 10 - 2.5f), Quaternion.identity, regalsTransform);
+                Instantiate(obstacles[Random.Range(0, obstacles.Length)], new Vector3(lineNumber * 10, 5, (position + 1 - i) * 10 + 2.5f), Quaternion.identity, regalsTransform);
             }
             else
             {
@@ -250,7 +252,8 @@ public class LevelGenerator : MonoBehaviour
         {
             if (i != obstacleSize - leftDisplacement)
             {
-                Instantiate(obstacles[Random.Range(0, obstacles.Length)], new Vector3(lineNumber * 10, 10, (position + 1 + i) * 10), Quaternion.identity, regalsTransform);
+                Instantiate(obstacles[Random.Range(0, obstacles.Length)], new Vector3(lineNumber * 10, 5, (position + 1 + i) * 10 - 2.5f), Quaternion.identity, regalsTransform);
+                Instantiate(obstacles[Random.Range(0, obstacles.Length)], new Vector3(lineNumber * 10, 5, (position + 1 + i) * 10 + 2.5f), Quaternion.identity, regalsTransform);
             }
             else
             {

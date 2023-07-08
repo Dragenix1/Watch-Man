@@ -10,12 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 2361256703602830876}
   - component: {fileID: 5130427253197198693}
+  - component: {fileID: -7063409446792466751}
   m_Layer: 0
   m_Name: RegalTileh2_v2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2361256703602830876
 Transform:
@@ -26,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1005578016134158643}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1024493169308757619}
@@ -74,6 +75,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 5, y: 10, z: 5}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!208 &-7063409446792466751
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005578016134158643}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 2.5, y: 10, z: 2.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0, y: 5, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &393078444843786220
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -141,6 +158,10 @@ PrefabInstance:
     - target: {fileID: 635199603273402079, guid: 1bb0debfdcca87f45bf249faed540987, type: 3}
       propertyPath: m_Name
       value: Metallrohr Variant (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 635199603273402079, guid: 1bb0debfdcca87f45bf249faed540987, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -220,6 +241,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Regal
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2686c49c05fd084f8a2f6ad6d54cdde, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -297,6 +322,10 @@ PrefabInstance:
     - target: {fileID: 635199603273402079, guid: 1bb0debfdcca87f45bf249faed540987, type: 3}
       propertyPath: m_Name
       value: Metallrohr Variant (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 635199603273402079, guid: 1bb0debfdcca87f45bf249faed540987, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -376,6 +405,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Metallrohr Variant (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 635199603273402079, guid: 1bb0debfdcca87f45bf249faed540987, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -454,6 +487,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Kiste Variant (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 8797198638091142998, guid: f499172368db2144096f3030480f0370, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -520,6 +557,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Kiste Variant (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8797198638091142998, guid: f499172368db2144096f3030480f0370, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -585,6 +626,10 @@ PrefabInstance:
     - target: {fileID: 8797198638091142998, guid: f499172368db2144096f3030480f0370, type: 3}
       propertyPath: m_Name
       value: Kiste Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 8797198638091142998, guid: f499172368db2144096f3030480f0370, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -664,6 +709,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Kiste Variant (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 8797198638091142998, guid: f499172368db2144096f3030480f0370, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -729,6 +778,10 @@ PrefabInstance:
     - target: {fileID: 8797198638091142998, guid: f499172368db2144096f3030480f0370, type: 3}
       propertyPath: m_Name
       value: Kiste Variant (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8797198638091142998, guid: f499172368db2144096f3030480f0370, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -808,6 +861,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Metallrohr Variant (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 635199603273402079, guid: 1bb0debfdcca87f45bf249faed540987, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -885,6 +942,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c2686c49c05fd084f8a2f6ad6d54cdde, type: 3}
       propertyPath: m_Name
       value: Regal (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2686c49c05fd084f8a2f6ad6d54cdde, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -964,6 +1025,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Metallrohr Variant (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 635199603273402079, guid: 1bb0debfdcca87f45bf249faed540987, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1029,6 +1094,10 @@ PrefabInstance:
     - target: {fileID: 8797198638091142998, guid: f499172368db2144096f3030480f0370, type: 3}
       propertyPath: m_Name
       value: Kiste Variant (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8797198638091142998, guid: f499172368db2144096f3030480f0370, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1108,6 +1177,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Metallrohr Variant (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 635199603273402079, guid: 1bb0debfdcca87f45bf249faed540987, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1185,6 +1258,10 @@ PrefabInstance:
     - target: {fileID: 635199603273402079, guid: 1bb0debfdcca87f45bf249faed540987, type: 3}
       propertyPath: m_Name
       value: Metallrohr Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 635199603273402079, guid: 1bb0debfdcca87f45bf249faed540987, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1264,6 +1341,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Metallrohr Variant (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 635199603273402079, guid: 1bb0debfdcca87f45bf249faed540987, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1329,6 +1410,10 @@ PrefabInstance:
     - target: {fileID: 8797198638091142998, guid: f499172368db2144096f3030480f0370, type: 3}
       propertyPath: m_Name
       value: Kiste Variant (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8797198638091142998, guid: f499172368db2144096f3030480f0370, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1408,6 +1493,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Kiste Variant (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 8797198638091142998, guid: f499172368db2144096f3030480f0370, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1485,6 +1574,10 @@ PrefabInstance:
     - target: {fileID: 635199603273402079, guid: 1bb0debfdcca87f45bf249faed540987, type: 3}
       propertyPath: m_Name
       value: Metallrohr Variant (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 635199603273402079, guid: 1bb0debfdcca87f45bf249faed540987, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1564,6 +1657,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Metallrohr Variant (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 635199603273402079, guid: 1bb0debfdcca87f45bf249faed540987, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1641,6 +1738,10 @@ PrefabInstance:
     - target: {fileID: 8797198638091142998, guid: f499172368db2144096f3030480f0370, type: 3}
       propertyPath: m_Name
       value: Kiste Variant (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8797198638091142998, guid: f499172368db2144096f3030480f0370, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 5137877936754964016}
   - component: {fileID: 5776185087142722071}
   - component: {fileID: 2916459180078668170}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -322,9 +322,53 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1661900572742205391}
     m_Modifications:
+    - target: {fileID: 505669979393591057, guid: 94641ab6811f4ce47b5482cea3e93619, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 720272885461100278, guid: 94641ab6811f4ce47b5482cea3e93619, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1524666967833995714, guid: 94641ab6811f4ce47b5482cea3e93619, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1545495857894121138, guid: 94641ab6811f4ce47b5482cea3e93619, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1927764319845500398, guid: 94641ab6811f4ce47b5482cea3e93619, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2520330747421923845, guid: 94641ab6811f4ce47b5482cea3e93619, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4193060025340808667, guid: 94641ab6811f4ce47b5482cea3e93619, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4528692789654049530, guid: 94641ab6811f4ce47b5482cea3e93619, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5894212342460933608, guid: 94641ab6811f4ce47b5482cea3e93619, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7033843130176698758, guid: 94641ab6811f4ce47b5482cea3e93619, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7317709358937579711, guid: 94641ab6811f4ce47b5482cea3e93619, type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7317709358937579711, guid: 94641ab6811f4ce47b5482cea3e93619, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7982183149796260357, guid: 94641ab6811f4ce47b5482cea3e93619, type: 3}
       propertyPath: m_RootOrder
@@ -377,6 +421,10 @@ PrefabInstance:
     - target: {fileID: 8107708215312588797, guid: 94641ab6811f4ce47b5482cea3e93619, type: 3}
       propertyPath: m_LocalPosition.y
       value: 6.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 8996931026902262022, guid: 94641ab6811f4ce47b5482cea3e93619, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

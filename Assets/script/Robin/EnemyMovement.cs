@@ -15,6 +15,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private AudioClip footstep2;
     private Transform lastTarget;
     private Transform newTarget;
+    private LevelGenerator levelGenerator;
     private bool goalReached = false; //Need to be true when goal reached to determine whether to decrease points or not (reached goal destroy or got caught destroy)
     public bool GoalReached { get => goalReached; }
 
@@ -26,6 +27,9 @@ public class EnemyMovement : MonoBehaviour
 
     private void Start()
     {
+        levelGenerator = LevelGenerator.Instance;
+        targets = levelGenerator.Targets;
+        endPoint = levelGenerator.EndPoint;
         lastTarget = targets[Random.Range(0, targets.Count - 1)];
         agent.SetDestination(lastTarget.position);
         agent.speed = speed;

@@ -91,7 +91,7 @@ public class LevelGenerator : MonoBehaviour
                 {
                     if (i != -1 && i != maxObstacleSize)
                     {
-                        Instantiate(smallObstacle[Random.Range(0, smallObstacle.Length)], new Vector3(position + 2 - maxObstacleSize + i, 0.5f, lineNumber), Quaternion.Euler(0, Random.Range(0, 4) * 90f, 0));
+                        Instantiate(smallObstacle[Random.Range(0, smallObstacle.Length)], new Vector3((position + 2 - maxObstacleSize + i) * 10, 0.5f * 10, lineNumber * 10), Quaternion.Euler(0, Random.Range(0, 4) * 90f, 0));
                     }
                     possiblePositions.Remove(position - i);
                 }
@@ -127,7 +127,7 @@ public class LevelGenerator : MonoBehaviour
                 {
                     if (i != leftDisplacement + 1)
                     {
-                        Instantiate(smallObstacle[Random.Range(0, smallObstacle.Length)], new Vector3(position + 1 - i, 0.5f, lineNumber), Quaternion.identity);
+                        Instantiate(smallObstacle[Random.Range(0, smallObstacle.Length)], new Vector3((position + 1 - i) * 10, 0.5f * 10, lineNumber * 10), Quaternion.identity);
                     }
                     possiblePositions.Remove(position - i);
                 }
@@ -135,7 +135,7 @@ public class LevelGenerator : MonoBehaviour
                 {
                     if(i != obstacleSize - leftDisplacement)
                     {
-                        Instantiate(smallObstacle[Random.Range(0, smallObstacle.Length)], new Vector3(position + 1 + i, 0.5f, lineNumber), Quaternion.identity);
+                        Instantiate(smallObstacle[Random.Range(0, smallObstacle.Length)], new Vector3((position + 1 + i) * 10, 0.5f * 10, lineNumber * 10), Quaternion.identity);
                     }
                     possiblePositions.Remove(position + i);
                 }
@@ -145,44 +145,48 @@ public class LevelGenerator : MonoBehaviour
 
     private void GenerateOutline()
     {
+        //for (int i = 0; i < size.x; i++)
+        //{
+        //    for (int j = 0; j < size.y; j++)
+        //    {
+        //        level[i, j].isFilled = false;
+        //        level[i, j].fill = Fill.Empty;
+        //    }
+        //}
         for (int i = 0; i < size.x; i++)
         {
             for (int j = 0; j < size.y; j++)
             {
-                level[i, j].isFilled = false;
-                level[i, j].fill = Fill.Empty;
+                newObject = Instantiate(plane, new Vector3(i * 10, 0, j * 10), Quaternion.identity);
             }
         }
 
-        newObject = Instantiate(plane, new Vector3(size.x / 2, 0, size.y / 2), Quaternion.identity);
-        newObject.transform.localScale = new Vector3(size.x / 10.0f, 1, size.y / 10.0f);
-
         for (int i = 0; i <= size.x - 1; i++)
         {
-            Instantiate(wall, new Vector3(i, 0.5f, 0), Quaternion.identity);
-            level[i, 0].isFilled = true;
-            level[i, 0].fill = Fill.Wall;
-            level[i, 1].isFilled = true;
-            level[i, 1].fill = Fill.Start;
-            level[i, 2].isFilled = true;
-            level[i, 2].fill = Fill.Start;
-            Instantiate(wall, new Vector3(i, 0.5f, size.y - 1), Quaternion.identity);
-            level[i, size.y - 1].isFilled = true;
-            level[i, size.y - 1].fill = Fill.Wall;
-            level[i, size.y - 2].isFilled = true;
-            level[i, size.y - 2].fill = Fill.End;
-            level[i, size.y - 3].isFilled = true;
-            level[i, size.y - 3].fill = Fill.End;
+            Instantiate(wall, new Vector3(i * 10, 0.5f * 10, 0), Quaternion.identity);
+            //level[i, 0].isFilled = true;
+            //level[i, 0].fill = Fill.Wall;
+            //level[i, 1].isFilled = true;
+            //level[i, 1].fill = Fill.Start;
+            //level[i, 2].isFilled = true;
+            //level[i, 2].fill = Fill.Start;
+            Instantiate(wall, new Vector3(i * 10, 0.5f * 10, (size.y - 1) * 10), Quaternion.identity);
+            //level[i, size.y - 1].isFilled = true;
+            //level[i, size.y - 1].fill = Fill.Wall;
+            //level[i, size.y - 2].isFilled = true;
+            //level[i, size.y - 2].fill = Fill.End;
+            //level[i, size.y - 3].isFilled = true;
+            //level[i, size.y - 3].fill = Fill.End;
         }
 
         for (int i = 1; i < size.y - 1; i++)
         {
-            Instantiate(wall, new Vector3(0, 0.5f, i), Quaternion.identity);
-            level[0, size.y - 1].isFilled = true;
-            level[0, size.y - 1].fill = Fill.Wall;
-            Instantiate(wall, new Vector3(size.x - 1, 0.5f, i), Quaternion.identity);
-            level[size.x - 1, size.y - 1].isFilled = true;
-            level[size.x - 1, size.y - 1].fill = Fill.Wall;
+            Instantiate(wall, new Vector3(0, 0.5f * 10, i * 10), Quaternion.identity);
+            //level[0, size.y - 1].isFilled = true;
+            //level[0, size.y - 1].fill = Fill.Wall;
+            Instantiate(wall, new Vector3((size.x - 1) * 10, 0.5f * 10, i * 10), Quaternion.identity);
+            //level[size.x - 1, size.y - 1].isFilled = true;
+            //level[size.x - 1, size.y - 1].fill = Fill.Wall;
         }
     }
 

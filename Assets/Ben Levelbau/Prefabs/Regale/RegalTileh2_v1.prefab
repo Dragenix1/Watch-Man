@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2361256703602830876}
   - component: {fileID: 5130427253197198693}
-  - component: {fileID: -3774020139388480159}
+  - component: {fileID: 3898516985188176233}
   m_Layer: 0
   m_Name: RegalTileh2_v1
   m_TagString: Untagged
@@ -46,7 +46,7 @@ Transform:
   - {fileID: 1021767879345580836}
   - {fileID: 8065338274316595424}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &5130427253197198693
 BoxCollider:
@@ -69,7 +69,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 5, y: 10, z: 5}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!208 &-3774020139388480159
+--- !u!208 &3898516985188176233
 NavMeshObstacle:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -79,11 +79,11 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 2.5, y: 10, z: 2.5}
+  m_Extents: {x: 2.5, y: 5, z: 2.5}
   m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 0
-  m_Center: {x: 0, y: 5, z: 0}
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
 --- !u!1001 &701719734618098072
 PrefabInstance:

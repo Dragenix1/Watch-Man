@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EscapeMenuManager : MonoBehaviour
 {
@@ -43,7 +44,17 @@ public class EscapeMenuManager : MonoBehaviour
     
     public void OnContinueClick()
     {
-        Time.timeScale = normalGameTime;
+        if (escapeMenu.activeInHierarchy)
+        {
+            Time.timeScale = normalGameTime;
+            escapeMenu.SetActive(false);
+            optionsMenu.SetActive(false);
+        }
+        else
+        {
+            escapeMenu.SetActive(true);
+            Time.timeScale = stoppedGameTime;
+        }
     }
 
     public void OnOptionClick()
@@ -58,6 +69,11 @@ public class EscapeMenuManager : MonoBehaviour
             optionsMenu.SetActive(true);
             escapeMenu.SetActive(false); 
         }
+    }
+
+    public void OnMainMenuClick()
+    {
+        SceneManager.LoadScene(0);
     }
 
     public void OnQuitGameClick()

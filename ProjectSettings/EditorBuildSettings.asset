@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Main Menu Scene.unity
     guid: 3a695e3e5740bc94fba8034966905b1d
   - enabled: 1
-    path: Assets/Scenes/Eric Scene.unity
-    guid: 76ed441cf4423264aa9e30145c4237a7
+    path: Assets/Ben Levelbau/Levelbau.unity
+    guid: 5ecc77450d797b340a9b44db305e7bc8
   m_configObjects: {}

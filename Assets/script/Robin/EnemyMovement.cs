@@ -10,6 +10,9 @@ public class EnemyMovement : MonoBehaviour
     private Rigidbody rb;
     [SerializeField] private List<Transform> targets = new List<Transform>();
     [SerializeField] private Transform endPoint;
+    [SerializeField] private AudioSource footstep;
+    [SerializeField] private AudioClip footstep1;
+    [SerializeField] private AudioClip footstep2;
     private Transform lastTarget;
     private Transform newTarget;
     private bool goalReached = false; //Need to be true when goal reached to determine whether to decrease points or not (reached goal destroy or got caught destroy)
@@ -55,5 +58,17 @@ public class EnemyMovement : MonoBehaviour
             lastTarget = endPoint;
         }
         agent.SetDestination(lastTarget.position);
+    }
+
+    public void PlayFoot1()
+    {
+        footstep.clip = footstep1;
+        footstep.Play();
+    }
+
+    public void PlayFoot2()
+    {
+        footstep.clip = footstep2;
+        footstep.Play();
     }
 }

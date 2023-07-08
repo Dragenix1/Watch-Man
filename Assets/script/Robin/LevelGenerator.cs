@@ -23,7 +23,7 @@ using Random = UnityEngine.Random;
 public class LevelGenerator : MonoBehaviour
 {
     [SerializeField] private Vector2Int size;
-    private Vector2Int minSize = new Vector2Int(15, 15);
+    private Vector2Int minSize = new Vector2Int(11, 15);
     private Vector2Int maxSize = new Vector2Int(51, 51);
     [SerializeField] private GameObject plane;
     [SerializeField] private GameObject wall;
@@ -37,6 +37,8 @@ public class LevelGenerator : MonoBehaviour
     private List<Vector2Int> targets = new();
     [SerializeField] private int targetAmount = 3;
     public GameObject target;
+
+    private List<Vector2Int> cameraPoints = new();
 
     private NavMeshSurface surface;
     private GameObject baseLevel;
@@ -83,8 +85,31 @@ public class LevelGenerator : MonoBehaviour
         //Instantiate(wall, new Vector3(endPoint.x, 20, endPoint.y), Quaternion.identity);
 
         SetTargets();
+        SetCameraPoints();
 
         surface.BuildNavMesh();
+    }
+
+    private void SetCameraPoints()
+    {
+        for (int i = 4; i < size.y - 4; i++)
+        {
+            if (i % 2 == 0)
+            {
+                int value2 = (size.x - 9) / 4;
+                value2++;
+
+                for (int j = 0; j <= value2; j++)
+                {
+                    cameraPoints.Add(new Vector2Int((j * 4 + 2) * 10, i * 10));
+                }
+            }
+        }
+
+        //foreach(Vector2Int cam in cameraPoints)
+        //{
+        //    Instantiate(target, new Vector3(cam.x, 20, cam.y), Quaternion.identity);
+        //}
     }
 
     private void SetTargets()

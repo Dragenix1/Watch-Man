@@ -247,7 +247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 160d1a191321dd04b90808e1985b517e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: {x: 17, y: 17}
+  size: {x: 20, y: 20}
   plane: {fileID: 6652721199637250195, guid: 3bbe3c457df9a6b4abbf1bec18b2cd3c, type: 3}
   wall: {fileID: 5215173045428520367, guid: 623cf7d23e6c8e549875cc43f250639a, type: 3}
   obstacles:

@@ -33,6 +33,10 @@ public class PointSystemManager : MonoBehaviour
 
     [SerializeField]
     private TextMeshProUGUI scoreValue;
+    [SerializeField]
+    private TextMeshProUGUI escapedValue; 
+    [SerializeField]
+    private TextMeshProUGUI catchValue;
 
     [SerializeField] private int chatchesToWin;
     [SerializeField] private int escapedToLose = 1;
@@ -59,7 +63,9 @@ public class PointSystemManager : MonoBehaviour
     private void UpdateScore()
     {
         if (valueOfStolenGoods < 0) valueOfStolenGoods = 0;
-        scoreValue.text = $"{valueOfStolenGoods}";
+        scoreValue.text = $"{valueOfStolenGoods}€";
+        escapedValue.text = $"{valueOfEscaped}/{escapedToLose}";
+        catchValue.text = $"{valueOfCatches}/{chatchesToWin}";
         if (valueOfCatches >= chatchesToWin)
         {
             //ShowWinScreen

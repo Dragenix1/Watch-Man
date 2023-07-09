@@ -56,5 +56,6 @@ public class DecreasePointsOnGoal : MonoBehaviour, IPointBehaviour
 
         int pointsToReceive = (int)(basePoints * pointPenalty * enemyMovement.WaypointAmount);
         pointManager.ValueOfStolenGoods += pointsToReceive;
+        pointManager.ValueOfEscaped++;
     }
 }

@@ -21,6 +21,6 @@ public class EndscreenScores : MonoBehaviour
 
         robberCatchedValueText.text = robberCatchedValue.ToString();
         robberEscapedValueText.text = robberEscapedValue.ToString();
-        goodValueText.text = goodsValue.ToString();
+        goodValueText.text = goodsValue.ToString() + "€";
     }
 }

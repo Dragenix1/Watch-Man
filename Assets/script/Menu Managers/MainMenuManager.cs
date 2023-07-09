@@ -10,15 +10,15 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private AudioSource lightTurnOff;
     [SerializeField] private GameObject howToPlayMenu;
     [SerializeField] private GameObject mainMenu;
-    [SerializeField] private Light light1;
-    [SerializeField] private Light light2;
-    [SerializeField] private Light light3;
-    [SerializeField] private Light light4;
-    [SerializeField] private Light light5;
-    [SerializeField] private Light light6;
-    [SerializeField] private Light light7;
-    [SerializeField] private Light light8;
-    [SerializeField] private Light light9;
+    [SerializeField] private GameObject light1;
+    [SerializeField] private GameObject light2;
+    [SerializeField] private GameObject light3;
+    [SerializeField] private GameObject light4;
+    [SerializeField] private GameObject light5;
+    [SerializeField] private GameObject light6;
+    [SerializeField] private GameObject light7;
+    [SerializeField] private GameObject light8;
+    [SerializeField] private GameObject light9;
 
     private int startOrder;
 
@@ -122,6 +122,7 @@ public class MainMenuManager : MonoBehaviour
                 StartCoroutine(StartGame());
                 break;
             case 4:
+                startOrder = 0;
                 SceneManager.LoadScene(1);
                 break;
             default:

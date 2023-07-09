@@ -19,7 +19,7 @@ public class PointSystemManager : MonoBehaviour
 
     private int valueOfCatches;
     public int ValueOfCatches
-    { 
+    {
         get => valueOfCatches;
         set => valueOfCatches = value;
     }
@@ -35,11 +35,13 @@ public class PointSystemManager : MonoBehaviour
     private TextMeshProUGUI scoreValue;
 
     [SerializeField] private int chatchesToWin;
-    [SerializeField] private int escapedToLose;
+    [SerializeField] private int escapedToLose = 1;
+
+    public EscapeMenuManager menuManager;
 
     private void Awake()
     {
-        if(instance != null && instance != this)
+        if (instance != null && instance != this)
         {
             Destroy(gameObject);
         }
@@ -56,23 +58,17 @@ public class PointSystemManager : MonoBehaviour
 
     private void UpdateScore()
     {
-        if(valueOfStolenGoods < 0) valueOfStolenGoods = 0;
-        if (valueOfStolenGoods == 0)
-        {
-            scoreValue.text = "O€";
-        }
-        else
-        {
-            scoreValue.text = $"{valueOfStolenGoods - 1},99€";
-        }
-
+        if (valueOfStolenGoods < 0) valueOfStolenGoods = 0;
+        scoreValue.text = $"{valueOfStolenGoods}";
         if (valueOfCatches >= chatchesToWin)
         {
             //ShowWinScreen
+            menuManager.ShowWinScreen();
         }
-        if(valueOfEscaped >= escapedToLose)
+        if (valueOfEscaped >= escapedToLose)
         {
             //ShowLoseScreen
+            menuManager.ShowLoseScreen();
         }
     }
 }

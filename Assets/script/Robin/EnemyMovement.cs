@@ -67,14 +67,14 @@ public class EnemyMovement : MonoBehaviour
         }
         if (other.gameObject != lastTarget.gameObject) return;
 
-        possibleWaypoints.Remove(lastTarget);
-        if (possibleWaypoints.Count != 0)
+        waypoints.Remove(lastTarget);
+        if (waypoints.Count != 0)
         {
-            newTarget = possibleWaypoints[Random.Range(0, possibleWaypoints.Count)];
+            newTarget = waypoints[Random.Range(0, waypoints.Count)];
             lastTarget = newTarget;
         }
 
-        if (possibleWaypoints.Count == 0)
+        if (waypoints.Count == 0)
         {
             if (lastTarget == endPoint) return;
             lastTarget = endPoint;

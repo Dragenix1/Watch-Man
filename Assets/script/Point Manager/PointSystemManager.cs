@@ -43,6 +43,9 @@ public class PointSystemManager : MonoBehaviour
 
     public EscapeMenuManager menuManager;
 
+    public AudioClip cash;
+    public Animation textAnim;
+
     private void Awake()
     {
         if (instance != null && instance != this)

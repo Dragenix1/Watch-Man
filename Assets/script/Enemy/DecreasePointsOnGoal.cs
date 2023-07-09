@@ -13,6 +13,7 @@ public class DecreasePointsOnGoal : MonoBehaviour, IPointBehaviour
     private const float highPointPenalty = 3.0f;
     private EnemyMovement enemyMovement;
 
+    
     private void Start()
     {
         pointManager = PointSystemManager.Instance;
@@ -24,7 +25,8 @@ public class DecreasePointsOnGoal : MonoBehaviour, IPointBehaviour
         if(enemyMovement.GoalReached)
         {
             IncreasePoints(basePoints);
-            pointManager.ValueOfEscaped++;
+            AudioSource.PlayClipAtPoint(pointManager.cash, Camera.main.transform.position);
+            pointManager.textAnim.Play();
         }
         else
         {

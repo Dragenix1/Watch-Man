@@ -11444,6 +11444,8 @@ MonoBehaviour:
   chatchesToWin: 5
   escapedToLose: 3
   menuManager: {fileID: 0}
+  cash: {fileID: 8300000, guid: 7630b773503c78f4aa56291cd792135d, type: 3}
+  textAnim: {fileID: 1478141849}
 --- !u!4 &636167930
 Transform:
   m_ObjectHideFlags: 0
@@ -33662,6 +33664,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1478141848}
+  - component: {fileID: 1478141849}
   m_Layer: 5
   m_Name: Value Goods
   m_TagString: Untagged
@@ -33679,7 +33682,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2015869705}
   - {fileID: 155519789}
@@ -33691,6 +33694,22 @@ RectTransform:
   m_AnchoredPosition: {x: -673.8, y: 470}
   m_SizeDelta: {x: 512.4, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!111 &1478141849
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1478141847}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 88616e9037140784a910b1c77907186d, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 88616e9037140784a910b1c77907186d, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1001 &1479556121
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -16,7 +16,7 @@ public class EnemySpawner : MonoBehaviour
     private GameObject enemy;
     private EnemyMovement enemyMovement;
 
-    private int spawnAmount = 1;
+    private int spawnAmount = 2;
     private float spawnTime;
     private float timer = 0;
 

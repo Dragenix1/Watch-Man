@@ -40,7 +40,7 @@ Transform:
   m_Children:
   - {fileID: 4298087701399485237}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8502966153388824257
 MeshFilter:
@@ -149,9 +149,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c1e1861d264234d9f349fa3bfea979, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSpeed: 3.5
-  maxSpeed: 7
-  minWaypoints: 1
+  minSpeed: 4
+  maxSpeed: 6
+  minWaypoints: 2
   maxWaypoints: 4
   footstep: {fileID: 2339767418237115482}
   footstep1: {fileID: 8300000, guid: 1450130b595d0f3438aa4764a8367f61, type: 3}

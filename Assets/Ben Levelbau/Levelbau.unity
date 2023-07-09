@@ -11441,7 +11441,7 @@ MonoBehaviour:
   scoreValue: {fileID: 155519790}
   escapedValue: {fileID: 1877655361}
   catchValue: {fileID: 1459406493}
-  chatchesToWin: 5
+  chatchesToWin: 10
   escapedToLose: 3
   menuManager: {fileID: 0}
   cash: {fileID: 8300000, guid: 7630b773503c78f4aa56291cd792135d, type: 3}
@@ -34685,7 +34685,7 @@ MonoBehaviour:
   - {fileID: 9021959484438572768, guid: b13141a29d1584b4eab7d8c177dadb3f, type: 3}
   - {fileID: 9021959484438572768, guid: a472d59da8994884bbf4bd126f198e40, type: 3}
   minSpawnTime: 20
-  maxSpawnTime: 100
+  maxSpawnTime: 50
   startAmount: 3
   increaseAmountTime: 500
   wayPoints:
@@ -40150,8 +40150,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 925761367}
   m_HandleRect: {fileID: 925761366}
   m_Direction: 0
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -46276,7 +46276,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1455086491}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

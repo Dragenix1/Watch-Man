@@ -562,8 +562,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   walkSpeed: 5
-  sprintSpeed: 10
-  sprintDuration: 1
+  sprintSpeed: 12
+  sprintDuration: 1.5
   sprintCooldownDuration: 2
   rotationSpeed: 500
   rotationAmount: 2

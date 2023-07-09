@@ -149,8 +149,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c1e1861d264234d9f349fa3bfea979, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSpeed: 3.5
-  maxSpeed: 7
+  minSpeed: 3
+  maxSpeed: 8
   minWaypoints: 1
   maxWaypoints: 4
   footstep: {fileID: 2916459180078668170}

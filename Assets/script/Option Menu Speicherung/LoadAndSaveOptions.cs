@@ -9,13 +9,12 @@ public class LoadAndSaveOptions : MonoBehaviour
     [SerializeField] private Slider masterSlider;
     [SerializeField] private Slider musicSlider;
     [SerializeField] private Slider sfxSlider;
-    private OptionsMenuManager optionsManager;
+    [SerializeField] private OptionsMenuManager optionsManager;
 
     private void Start()
     {
         if(config != null)
         {
-            optionsManager = GetComponentInChildren<OptionsMenuManager>();
             optionsManager.setMasterVolume(config.masterSave);
             optionsManager.setMusicVolume(config.musicSave);
             optionsManager.setSFXVolume(config.sfxSave);

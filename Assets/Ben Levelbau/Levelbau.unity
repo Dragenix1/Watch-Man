@@ -32029,6 +32029,7 @@ GameObject:
   - component: {fileID: 1488044268}
   - component: {fileID: 1488044273}
   - component: {fileID: 1488044274}
+  - component: {fileID: 1488044275}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -32246,6 +32247,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 1488044273}
+--- !u!114 &1488044275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1488044267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42b94b6432521da4cbefdb435f66bfe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  config: {fileID: 11400000, guid: ef770e1fc0006b04b95ba053e8bbca3f, type: 2}
+  masterSlider: {fileID: 1802369068}
+  musicSlider: {fileID: 27848905}
+  sfxSlider: {fileID: 1502313638}
+  optionsManager: {fileID: 1606568348}
 --- !u!4 &1491566969 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6378601855356936233, guid: 81ee577b7d2ded244bbfdeb7aceadf2b, type: 3}
@@ -34312,7 +34330,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1606568349}
   - component: {fileID: 1606568348}
-  - component: {fileID: 1606568350}
   m_Layer: 5
   m_Name: Options Menu
   m_TagString: Untagged
@@ -34332,7 +34349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6af5238085626594bb50a2df6d293d96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadAndSave: {fileID: 1606568350}
+  loadAndSave: {fileID: 1488044275}
   masterMixer: {fileID: 24100000, guid: 5aa8cf31ec75adf449b4b7e2ea4fd2d1, type: 2}
   musicMixer: {fileID: 24100000, guid: 6259ae0e288e570468601d65d3005d2f, type: 2}
   sfxMixer: {fileID: 24100000, guid: f941c59e0aafe524e85d8896cc7dd07c, type: 2}
@@ -34359,22 +34376,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1606568350
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1606568347}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42b94b6432521da4cbefdb435f66bfe0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  config: {fileID: 11400000, guid: ef770e1fc0006b04b95ba053e8bbca3f, type: 2}
-  masterSlider: {fileID: 1802369068}
-  musicSlider: {fileID: 27848905}
-  sfxSlider: {fileID: 1502313638}
 --- !u!4 &1606833151 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 748616133047400362, guid: 4fbe2e282eab18a44982ee2fa236a2c2, type: 3}

@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4026646718977026751}
   - component: {fileID: 685898382634035867}
   - component: {fileID: 5137877936754964016}
+  - component: {fileID: 5514889876119249378}
   - component: {fileID: 5776185087142722071}
   - component: {fileID: -7677677418238894504}
   m_Layer: 8
@@ -148,28 +149,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c1e1861d264234d9f349fa3bfea979, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
-  targets:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  endPoint: {fileID: 0}
+  minSpeed: 3.5
+  maxSpeed: 7
+  minWaypoints: 1
+  maxWaypoints: 4
   footstep: {fileID: -7677677418238894504}
   footstep1: {fileID: 8300000, guid: 1450130b595d0f3438aa4764a8367f61, type: 3}
   footstep2: {fileID: 8300000, guid: 668304ba91d99684f941702838611cf0, type: 3}
@@ -212,6 +195,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20ff4fa99591d3643a706d79908bf758, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5514889876119249378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9021959484438572768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3fdeafd00045f745ab23ad88f5948c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  searchSound:
+  - {fileID: 8300000, guid: 79e61abc069b4ff4d840ec5297800f1e, type: 3}
+  - {fileID: 8300000, guid: 41ffc9550c122624da7e5ec7924b3232, type: 3}
+  - {fileID: 8300000, guid: c83c41d7c6ab48f43aad24bca3e5ff1b, type: 3}
+  minSound: 0.1
+  maxSound: 0.8
+  chanceToPlay: 0.33
 --- !u!95 &5776185087142722071
 Animator:
   serializedVersion: 5

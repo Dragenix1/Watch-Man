@@ -1322,7 +1322,6 @@ GameObject:
   m_Component:
   - component: {fileID: 258043575}
   - component: {fileID: 258043574}
-  - component: {fileID: 258043573}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1330,14 +1329,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &258043573
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 258043572}
-  m_Enabled: 1
 --- !u!20 &258043574
 Camera:
   m_ObjectHideFlags: 0
@@ -1744,6 +1735,7 @@ GameObject:
   - component: {fileID: 347916124}
   - component: {fileID: 347916125}
   - component: {fileID: 347916126}
+  - component: {fileID: 347916127}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2067,6 +2059,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &347916127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347916118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42b94b6432521da4cbefdb435f66bfe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  config: {fileID: 0}
+  masterSlider: {fileID: 0}
+  musicSlider: {fileID: 0}
+  sfxSlider: {fileID: 0}
 --- !u!1 &352445924
 GameObject:
   m_ObjectHideFlags: 0
@@ -4036,6 +4044,7 @@ GameObject:
   m_Component:
   - component: {fileID: 996831969}
   - component: {fileID: 996831970}
+  - component: {fileID: 996831971}
   m_Layer: 5
   m_Name: Options Menu
   m_TagString: Untagged
@@ -4078,9 +4087,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6af5238085626594bb50a2df6d293d96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadAndSave: {fileID: 996831971}
   masterMixer: {fileID: 24100000, guid: 5aa8cf31ec75adf449b4b7e2ea4fd2d1, type: 2}
   musicMixer: {fileID: 24100000, guid: 6259ae0e288e570468601d65d3005d2f, type: 2}
   sfxMixer: {fileID: 24100000, guid: f941c59e0aafe524e85d8896cc7dd07c, type: 2}
+--- !u!114 &996831971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 996831968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42b94b6432521da4cbefdb435f66bfe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  config: {fileID: 11400000, guid: ef770e1fc0006b04b95ba053e8bbca3f, type: 2}
+  masterSlider: {fileID: 250172448}
+  musicSlider: {fileID: 244425945}
+  sfxSlider: {fileID: 331650040}
 --- !u!1 &1001569020
 GameObject:
   m_ObjectHideFlags: 0
@@ -4691,7 +4717,7 @@ MonoBehaviour:
   m_Content: {fileID: 2048576788}
   m_Horizontal: 1
   m_Vertical: 1
-  m_MovementType: 1
+  m_MovementType: 2
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135

@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class DecreasePointsOnGoal : MonoBehaviour, IPointBehaviour
@@ -14,17 +11,24 @@ public class DecreasePointsOnGoal : MonoBehaviour, IPointBehaviour
     private const float lowPointPenalty = 1.5f;
     private const float normalPointPenalty = 2.0f;
     private const float highPointPenalty = 3.0f;
+    private EnemyMovement enemyMovement;
 
     private void Start()
     {
         pointManager = PointSystemManager.Instance;
+        enemyMovement = GetComponent<EnemyMovement>();
     }
 
     private void OnDestroy()
     {
-        if(GetComponent<EnemyMovement>().GoalReached)
+        if(enemyMovement.GoalReached)
         {
             IncreasePoints(basePoints);
+            pointManager.ValueOfEscaped++;
+        }
+        else
+        {
+            pointManager.ValueOfCatches++;
         }
     }
 
@@ -35,7 +39,7 @@ public class DecreasePointsOnGoal : MonoBehaviour, IPointBehaviour
 
     public void IncreasePoints(int points)
     {
-        float enemySpeed = GetComponent<EnemyMovement>().Speed;
+        float enemySpeed = enemyMovement.Speed;
         float pointPenalty = 0;
         if(enemySpeed < slowEnemy)
         {
@@ -50,7 +54,7 @@ public class DecreasePointsOnGoal : MonoBehaviour, IPointBehaviour
             pointPenalty = lowPointPenalty;
         }
 
-        int pointsToReceive = (int)(basePoints * pointPenalty);
+        int pointsToReceive = (int)(basePoints * pointPenalty * enemyMovement.WaypointAmount);
         pointManager.ValueOfStolenGoods += pointsToReceive;
     }
 }

@@ -18,6 +18,9 @@ public class EnemyMovement : MonoBehaviour
     private bool goalReached = false; //Need to be true when goal reached to determine whether to decrease points or not (reached goal destroy or got caught destroy)
     public bool GoalReached { get => goalReached; }
 
+    private Animator anim;
+    private int lootingID;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -29,6 +32,8 @@ public class EnemyMovement : MonoBehaviour
         lastTarget = targets[Random.Range(0, targets.Count - 1)];
         agent.SetDestination(lastTarget.position);
         agent.speed = speed;
+        anim = GetComponent<Animator>();
+        lootingID = Animator.StringToHash("trigLooting");
     }
 
     private void OnTriggerEnter(Collider other)
@@ -57,7 +62,7 @@ public class EnemyMovement : MonoBehaviour
             if (lastTarget == endPoint) return;
             lastTarget = endPoint;
         }
-        agent.SetDestination(lastTarget.position);
+        anim.SetTrigger(lootingID); 
     }
 
     public void PlayFoot1()
@@ -70,5 +75,10 @@ public class EnemyMovement : MonoBehaviour
     {
         footstep.clip = footstep2;
         footstep.Play();
+    }
+
+    public void SetNewDestination()
+    {
+        agent.SetDestination(lastTarget.position);
     }
 }

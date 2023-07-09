@@ -4,12 +4,27 @@ using UnityEngine.AI;
 
 public class EnemyMovement : MonoBehaviour
 {
-    [SerializeField] private float speed = 3.5f;
+    [SerializeField] private float minSpeed = 3.5f;
+    [SerializeField] private float maxSpeed = 7.0f;
+    private float speed;
     public float Speed { get => speed; }
+
+    [SerializeField] private int minWaypoints = 1;
+    [SerializeField] private int maxWaypoints = 4;
+    private List<Transform> possibleWaypoints = new List<Transform>();
+    public List<Transform> PossibleWaypoints { set { possibleWaypoints = value; } }
+    private List<Transform> waypoints = new();
+    private int waypointAmount;
+    public int WaypointAmount
+    {
+        get => waypointAmount;
+    }
+
+    private Transform endPoint;
+    public Transform EndPoint { set { endPoint = value; } }
+
     private NavMeshAgent agent;
-    private Rigidbody rb;
-    [SerializeField] private List<Transform> targets = new List<Transform>();
-    [SerializeField] private Transform endPoint;
+
     [SerializeField] private AudioSource footstep;
     [SerializeField] private AudioClip footstep1;
     [SerializeField] private AudioClip footstep2;
@@ -23,23 +38,28 @@ public class EnemyMovement : MonoBehaviour
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
     }
 
     private void Start()
     {
-        lastTarget = targets[Random.Range(0, targets.Count - 1)];
+        lastTarget = possibleWaypoints[Random.Range(0, possibleWaypoints.Count)];
         agent.SetDestination(lastTarget.position);
-        agent.speed = speed;
+        agent.speed = Random.Range(minSpeed, maxSpeed);
         anim = GetComponent<Animator>();
         lootingID = Animator.StringToHash("trigLooting");
+        waypointAmount = Random.Range(minWaypoints, maxWaypoints + 1);
+        for (int i = 0; i < waypointAmount; i++)
+        {
+            waypoints.Add(possibleWaypoints[Random.Range(0, possibleWaypoints.Count)]);
+        }
+        waypointAmount++;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player")) return;
-       if(other.gameObject.transform == endPoint)
+        if (other.gameObject.transform == endPoint)
         {
             goalReached = true;
             Destroy(gameObject);
@@ -47,22 +67,19 @@ public class EnemyMovement : MonoBehaviour
         }
         if (other.gameObject != lastTarget.gameObject) return;
 
-        if (targets.Count != 0)
+        possibleWaypoints.Remove(lastTarget);
+        if (possibleWaypoints.Count != 0)
         {
-            targets.Remove(lastTarget); 
-        }
-        if(targets.Count != 0)
-        {
-            newTarget = targets[Random.Range(0, targets.Count - 1)];
+            newTarget = possibleWaypoints[Random.Range(0, possibleWaypoints.Count)];
+            lastTarget = newTarget;
         }
 
-        lastTarget = newTarget;
-        if(targets.Count == 0)
+        if (possibleWaypoints.Count == 0)
         {
             if (lastTarget == endPoint) return;
             lastTarget = endPoint;
         }
-        anim.SetTrigger(lootingID); 
+        anim.SetTrigger(lootingID);
     }
 
     public void PlayFoot1()
